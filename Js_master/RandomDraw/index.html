@@ -1,0 +1,59 @@
+<!--
+ * @Author: AlanGolphi
+ * @Date: 2021-05-28 23:14:52
+ * @LastEditTime: 2021-05-28 23:14:54
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<style type="text/css">
+			body {
+				font-size: 100px;
+				text-align: center;
+			}
+			input {
+				width: 350px;
+				height: 140px;
+				font-size: 80px;
+			}
+		</style>
+		<title>抽签</title>
+		<script language="JavaScript">
+			var names = ["范冰冰", "李晨", "邓超", "孙俪", "Angela", "刘涛"];
+
+			var name;
+			var index = -1;
+			var time;
+			function begin() {
+				document.getElementById("btnBegin").disabled = true;
+				chouqian();
+			}
+			function chouqian() {
+				if (names.length > 0) {
+					index = Math.floor((Math.random() * 1000) % names.length);
+					name = names[index];
+					document.getElementById("result").innerHTML = name;
+
+					time = window.setTimeout(chouqian, 2);
+				} else {
+					document.getElementById("result").innerHTML = "~结束~";
+				}
+			}
+			function end() {
+				window.clearTimeout(time);
+				document.getElementById("btnBegin").disabled = false;
+				names.splice(index, 1);
+			}
+		</script>
+	</head>
+
+	<body>
+		<div>
+			<h3>答辩者姓名</h3>
+			<h1 id="result" style="color: blue">^_^</h1>
+			<input type="button" value="开始" id="btnBegin" ONCLICK="begin();" />
+			<input type="button" value="结束" id="btnEnd" ONCLICK="end();" />
+		</div>
+	</body>
+</html>
